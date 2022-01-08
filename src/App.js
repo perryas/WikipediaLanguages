@@ -28,7 +28,7 @@ function App() {
 
       const wordCounts = await Promise.all(allowedWikiLangs.map(async wikiLang => {
         const lang = allowedLangs.find(lang => lang.wikiCode === wikiLang.site);
-        let wordCount = await fetch(`http://${lang.code}.wikipedia.org/w/api.php?format=json&origin=*&action=query&list=search&srwhat=nearmatch&srlimit=1&srsearch=${name}`);
+        let wordCount = await fetch(`https://${lang.code}.wikipedia.org/w/api.php?format=json&origin=*&action=query&list=search&srwhat=nearmatch&srlimit=1&srsearch=${name}`);
         wordCount = await wordCount.json();
         wordCount = wordCount.query.search[0]?.wordcount;
         return { wordCount, ...lang };
